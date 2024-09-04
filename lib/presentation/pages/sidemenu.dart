@@ -30,7 +30,7 @@ class _SideMenuState extends State<SideMenu> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Seminar IoT ORBIT"),
+        title: Text("Remote IoT"),
         leading: Builder(
           builder: (context) {
             return IconButton(
@@ -55,12 +55,12 @@ class _SideMenuState extends State<SideMenu> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Image.asset(
-                    'assets/image/logoorbit.png',
-                    width: 180,
+                    'assets/images/logo.png',
+                    width: 100,
                   ),
                   SizedBox(height: 10),
                   Text(
-                    'Seminar IoT ORBIT',
+                    'IoT Remote',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
