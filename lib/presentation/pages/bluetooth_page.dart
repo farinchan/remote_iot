@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:iot_remote/presentation/bloc/bluetooth_connect/bluetooth_connect_bloc.dart';
 import 'package:iot_remote/presentation/bloc/bluetooth_device/bluetooth_device_bloc.dart';
 import 'package:iot_remote/presentation/widget/bluetooth_scan_widget.dart';
 
@@ -86,37 +87,12 @@ class _BluetoohPageState extends State<BluetoohPage> {
                                       enabled: true,
                                       onTap: () async {
                                         log("Item");
-                                        try {
-                                          BluetoothConnection connection =
-                                              await BluetoothConnection
-                                                  .toAddress(device.address);
-                                          log('Connected to the device');
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(const SnackBar(
-                                            content:
-                                                Text('Connected to the device'),
-                                            backgroundColor: Colors.green,
-                                          )); 
 
-                                          connection.input
-                                              ?.listen((Uint8List data) {
-                                            log('Data incoming: ${ascii.decode(data)}');
-                                            connection.output
-                                                .add(data); // Sending data
-
-                                            if (ascii
-                                                .decode(data)
-                                                .contains('!')) {
-                                              connection
-                                                  .finish(); // Closing connection
-                                              log('Disconnecting by local host');
-                                            }
-                                          }).onDone(() {
-                                            log('Disconnected by remote request');
-                                          });
-                                        } catch (exception) {
-                                          log('Cannot connect, exception occured');
-                                        }
+                                        context
+                                            .read<BluetoothConnectBloc>()
+                                            .add(ConnectingBluetooth(
+                                                context, device));
+                                        log('Connected to the device');
                                       },
                                     ))
                                 .toList(),

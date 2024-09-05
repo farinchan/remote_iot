@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:iot_remote/presentation/bloc/bluetooth_connect/bluetooth_connect_bloc.dart';
 import 'package:iot_remote/presentation/bloc/bluetooth_device/bluetooth_device_bloc.dart';
 import 'package:iot_remote/presentation/bloc/relay/relay_bloc.dart';
+import 'package:iot_remote/presentation/bloc/voice_recognition/voice_recognition_bloc.dart';
 import 'package:iot_remote/presentation/pages/relay_page.dart';
 import 'package:iot_remote/presentation/pages/sidemenu.dart';
 
@@ -22,6 +24,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => BluetoothDeviceBloc(),
+        ),
+        BlocProvider(
+          create: (context) => BluetoothConnectBloc(),
+        ),
+        BlocProvider(
+          create: (context) => VoiceRecognitionBloc()
         ),
       ],
       child: MaterialApp.router(

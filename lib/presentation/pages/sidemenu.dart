@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iot_remote/presentation/pages/bluetooth_page.dart';
 import 'package:iot_remote/presentation/pages/relay_page.dart';
+import 'package:iot_remote/presentation/pages/robocar_page.dart';
 import 'package:iot_remote/presentation/pages/temperature_page.dart';
 
 class SideMenu extends StatefulWidget {
@@ -18,6 +19,7 @@ class _SideMenuState extends State<SideMenu> {
     RelayPage(),
     TemperaturePage(),
     BluetoohPage(),
+    RobocarPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -89,10 +91,20 @@ class _SideMenuState extends State<SideMenu> {
               },
             ),
             ListTile(
-              title: const Text('School'),
+              leading: Icon(Icons.bluetooth),
+              title: const Text('Bluetooth'),
               selected: _selectedIndex == 2,
               onTap: () {
                 _onItemTapped(2);
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.car_repair),
+              title: const Text('Robocar'),
+              selected: _selectedIndex == 3,
+              onTap: () {
+                _onItemTapped(3);
                 Navigator.pop(context);
               },
             ),
